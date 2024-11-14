@@ -1,0 +1,13 @@
+html,
+body {
+	padding: 10px;
+	clear: both;
+	float: left;
+}
+
+#singleBlogPost {
+	padding: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: blue;
+}
