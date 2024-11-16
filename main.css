@@ -12,3 +12,14 @@ body {
 	border-style: solid;
 	border-color: blue;
 }
+
+#blogPostCreation {
+	border-width: 2px;
+	border-style: groove;
+	border-color: color-mix(in srgb, plum 87%, #f00 41%);
+}
+
+/* In all of the children of #blogPostCreation add margins*/
+#blogPostCreation > * {
+	margin: 10px;
+}

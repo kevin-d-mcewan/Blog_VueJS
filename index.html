@@ -14,6 +14,20 @@
 			<blog-post v-for="post in posts" v-bind:blogpost="post"></blog-post>
 		</div>
 
+		<div id="blogPostCreation">
+			<h2>Create New Blog Post</h2>
+			<input v-model="title" /><br />
+			<!-- *** Must Create Vue -> 'title'****-->
+			<input v-model="title" /><br />
+			<!-- *** Must Create Vue -> 'title'****-->
+			<input v-model="username" /><br />
+			<input v-model="date" /><br />
+			<input v-model="content" /><br />
+			<button v-on:click="publishPost">Publish Post</button>
+			<!-- *** Must Create 'publishPost' Vue ****-->
+		</div>
+
+		<!-- JS Script handling all of our Vue code -->
 		<script>
 			// Blogpost set-up component for how to set it up in HTML
 			Vue.component("blog-post", {
