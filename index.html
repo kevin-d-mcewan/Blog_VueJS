@@ -4,32 +4,62 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Blog Site</title>
-		<script src="https://cdn.jsdelivr.net/npm/vue@3.5.12/dist/vue.global.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 		<link rel="stylesheet" href="main.css" />
 	</head>
 	<body>
 		<h1>Welcome to My Blog Site!</h1>
 		<div id="blogPosts">
-			BlogPost
-
-			<div id="singleBlogPost">
-				<h2>{{ blogpost.title }}</h2>
-				<h3>{{ blogpost.username}}</h3>
-				<h4>{{ blogpost.date}}</h4>
-				<p>{{ blogpost.content}}</p>
-			</div>
+			<!-- 'v-bind' is binding itself to PROPS:[blogpost] and by doing this each time it pulls in one of these it uses the templete form created in the COMPONENT "blog-post"		-->
+			<blog-post v-for="post in posts" v-bind:blogpost="post"></blog-post>
 		</div>
 
 		<script>
-			// const app = Vue.createApp({
-			//   data() {
-			//     return {
-			//       message: "Hello World!"
-			//     }
-			//   }
-			//   })
+			// Blogpost set-up component for how to set it up in HTML
+			Vue.component("blog-post", {
+				props: ["blogpost"],
+				// Must use backtick ` ` in order to bring in multiline strings link html code
+				template: `<div id="singleBlogPost">
+												<h2>{{ blogpost.title }}</h2>
+												<h3>{{ blogpost.username }}</h3>
+												<h4>{{ blogpost.date}}</h4>
+												<p> {{blogpost.content }}</p>
+											</div>`,
+			});
 
-			//   app.mount('#app')
+			// Must create a "Vue.component()" first then do the 'Vue' or it will not render
+			var blogVue = new Vue({
+				// el: is the container that will hold the blog posts (i.e. div with all div's inside1)
+				el: "#blogPosts",
+				data: {
+					// 'posts' are every blog post that will ever be written
+					posts: [
+						// Inside the {} would be normally connected to a database that had each blog and would be set up like
+						// {blogVue.posts = [aFunctionToCallDBforWrittenBlogs]} *This is when you have a true backend*
+						{
+							title: "First Post",
+							username: "Kevin",
+							date: "Nov 1, 2024",
+							content:
+								"This is the content of the blog. It's so amazing how this is done.",
+						},
+						{
+							title: "Second Blog Post",
+							username: "Kevin",
+							date: "Nov 7, 2024",
+							content:
+								"I can't believe it has already been 6 days since my last post...",
+						},
+						{
+							title: "Winter is Coming",
+							username: "Jon Snow",
+							date: "Nov 15, 2024",
+							content:
+								"Today we saw the white walkers approaching the wall. It will only be a matter of days before they attempt to take over the wall from the Watch.",
+						},
+					],
+				},
+			});
 		</script>
 	</body>
 </html>
