@@ -18,8 +18,6 @@
 			<h2>Create New Blog Post</h2>
 			<input v-model="title" /><br />
 			<!-- *** Must Create Vue -> 'title'****-->
-			<input v-model="title" /><br />
-			<!-- *** Must Create Vue -> 'title'****-->
 			<input v-model="username" /><br />
 			<input v-model="date" /><br />
 			<input v-model="content" /><br />
@@ -72,6 +70,34 @@
 								"Today we saw the white walkers approaching the wall. It will only be a matter of days before they attempt to take over the wall from the Watch.",
 						},
 					],
+				},
+			});
+
+			/* postBlogVue */
+			var postBlogVue = new Vue({
+				el: "#blogPostCreation",
+				data: {
+					title: "",
+					username: "",
+					date: "",
+					content: "",
+				},
+				methods: {
+					publishPost: function () {
+						var postData = {
+							title: this.title,
+							username: this.username,
+							date: this.date,
+							content: this.content,
+						};
+						// Adding a push to the blogVue.post[] in order to add this data to that array
+						blogVue.posts.push(postData);
+						// Clearing the fields so that the user can write another post
+						this.title = "";
+						this.username = "";
+						this.date = "";
+						this.content = "";
+					},
 				},
 			});
 		</script>
